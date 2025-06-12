@@ -1,0 +1,60 @@
+.submit-button{
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.icon{
+    position: relative;
+    margin-right: 8px;
+    transition: none;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+.submit-button:hover{
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.icon > svg{
+    transition: none;
+    transform: none;
+}
+
+.submit-button:hover > .icon{
+    animation: none;
+    margin: 0;
+}
+
+.submit-button > input {
+    display: none;
+}
+
+@keyframes icon {
+    0%{
+        margin: 0;
+    }
+    25%{
+        margin-top: 5px;
+    }
+    50%{
+        margin: 0;
+    }
+    75%{
+        margin-top: -5px;
+    }
+    100%{
+        margin: 0;
+    }
+}

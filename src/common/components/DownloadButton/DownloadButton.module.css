@@ -1,0 +1,58 @@
+.button {
+    position: relative;
+    overflow: hidden;
+    height: 3.5rem;
+    padding: 0 2.5rem;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+    background-size: 200% 100%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: background-position 0.4s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+    background-position: 100% 0;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+.button:hover::before {
+    transform: scaleX(1);
+}
+
+.button-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.button-icon {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+    background: linear-gradient(
+        82.3deg,
+        rgba(150, 93, 233, 1) 10.8%,
+        rgba(99, 88, 238, 1) 94.3%
+    );
+    transition: all 0.475s;
+}
