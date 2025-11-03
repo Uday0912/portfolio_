@@ -1,0 +1,281 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Core Theme Colors */
+  --primary: #2D3250; /* Deep Navy - Professional & trustworthy */
+  --secondary: #424769; /* Slate Blue - Refined secondary */
+  --accent: #F6B17A; /* Warm Orange - Engaging accent */
+  
+  /* Background System */
+  --bg-primary: #F9F7F7; /* Clean white background */
+  --bg-secondary: #FFFFFF; /* Pure white for cards */
+  --bg-tertiary: #F1F5F9; /* Light gray for subtle variation */
+  
+  /* Surface Colors */
+  --surface-light: rgba(255, 255, 255, 0.8);
+  --surface-glass: rgba(255, 255, 255, 0.5);
+  --surface-hover: rgba(246, 177, 122, 0.1);
+  
+  /* Border Colors */
+  --border-light: rgba(45, 50, 80, 0.1);
+  --border-focus: rgba(246, 177, 122, 0.5);
+  
+  /* Text Colors */
+  --text-primary: #2D3250; /* Main text - matches primary */
+  --text-secondary: #424769; /* Secondary text */
+  --text-tertiary: #7077A1; /* Subtle text */
+  --text-light: #F9F7F7; /* Light text on dark backgrounds */
+  
+  /* Shadow Effects */
+  --shadow-sm: 0 2px 8px rgba(45, 50, 80, 0.05);
+  --shadow-md: 0 4px 16px rgba(45, 50, 80, 0.1);
+  --shadow-lg: 0 8px 32px rgba(45, 50, 80, 0.15);
+
+  /* icons color */
+  --html-color: #e34c26; /* HTML5 orange (unchanged) */
+  --css-color: #2965f1; /* Modern CSS blue */
+  --java-script-color: #f7df1e; /* JavaScript yellow */
+  --react-color: #61dafb; /* React cyan (unchanged) */
+  --redux-color: #764abc; /* Redux purple (unchanged) */
+  --github-color: #181717; /* GitHub dark gray */
+  --git-color: #f05033; /* Git orange */
+  --java-color: #007396; /* Java teal */
+  --cpp-color: #00599c; /* C++ blue */
+  --facebook-color: #3b5998; /* Facebook blue */
+  --linked-in-color: #0a66c2; /* LinkedIn blue */
+  --gmail-color: #d14836; /* Gmail red */
+  --type-script-color: #3178c6; /* TypeScript blue */
+  --recoil-color: #3578e5; /* Recoil blue (unchanged) */
+  --react-query-color: #ff4154; /* React Query red */
+}
+
+html {
+  scroll-behavior: smooth;
+  /* overflow: hidden; (commented out to avoid potential issues) */
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--primary);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+h1 { 
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 { 
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1.5rem;
+}
+
+h3 { 
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--secondary);
+}
+
+h4 { 
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  color: var(--secondary);
+}
+
+p {
+  margin: 0 0 1.5rem;
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Layout & Spacing */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  max-width: 80rem; /* 1280px */
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 640px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* Component Base Styles */
+.card {
+  background: var(--bg-secondary);
+  border-radius: 1.25rem;
+  border: 1px solid var(--border-light);
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--surface-hover), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card:hover {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Buttons */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--text-light);
+  border: none;
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.button-primary:active {
+  transform: translateY(0);
+}
+
+.button-secondary {
+  background: var(--bg-secondary);
+  color: var(--primary);
+  border: 2px solid var(--border-light);
+}
+
+.button-secondary:hover {
+  border-color: var(--primary);
+  background: var(--surface-hover);
+}
+
+/* Form Elements */
+.input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border-light);
+  border-radius: 0.75rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--border-focus);
+}
+
+/* Skills Tags */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+  background: var(--surface-hover);
+  color: var(--primary);
+  transform: translateY(-1px);
+}

@@ -11,6 +11,15 @@
   --text-secondary: #546e7a; /* Medium Blue-Gray for secondary text */
   --text-headings: #1a237e; /* Dark Indigo for headings */
   --border-color: #cfd8dc; /* Light Gray Blue for borders */
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --menu-bg: rgba(255, 255, 255, 0.98);
+
+  /* Footer semantic tokens used below */
+  --primary: #0f172a; /* footer bg */
+  --accent: #7c3aed; /* footer accent */
+  --text-light: #e5e7eb; /* footer text on dark bg */
+  --text-tertiary: #cbd5e1;
+  --border-light: rgba(148, 163, 184, 0.3);
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -2px rgba(0, 0, 0, 0.1);
@@ -18,6 +27,27 @@
     0 4px 6px -4px rgba(0, 0, 0, 0.1);
   --border-radius-md: 8px;
   --border-radius-lg: 16px;
+}
+
+/* Dark theme overrides */
+:root[data-theme="dark"] {
+  --primary-color: #8b5cf6; /* Violet */
+  --primary-light: #60a5fa; /* Blue */
+  --accent-color: #22d3ee; /* Cyan */
+  --bg-color: #0b1220; /* Deep navy */
+  --card-bg-color: #0f172a; /* Slate 900 */
+  --text-primary: #e5e7eb; /* Gray 200 */
+  --text-secondary: #94a3b8; /* Slate 400 */
+  --text-headings: #ffffff;
+  --border-color: #233044; /* Dark border */
+  --nav-bg: rgba(11, 18, 32, 0.85);
+  --menu-bg: rgba(15, 23, 42, 0.98);
+
+  --primary: #0b1220;
+  --accent: #a78bfa;
+  --text-light: #e2e8f0;
+  --text-tertiary: #94a3b8;
+  --border-light: rgba(71, 85, 105, 0.5);
 }
 
 .app {
@@ -54,7 +84,7 @@
   top: 0;
   left: 0;
   z-index: 500; /* Ensure it's above most content */
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
   box-shadow: var(--shadow-md);
@@ -162,7 +192,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.98);
+  background: var(--menu-bg);
   backdrop-filter: blur(15px) saturate(190%);
   -webkit-backdrop-filter: blur(15px) saturate(190%);
   z-index: 499; /* Below nav but above content */
@@ -302,6 +332,7 @@ section {
 .home-content > h1 > span {
   /* For highlighting name or role */
   background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -528,7 +559,7 @@ section {
 }
 .projects-list {
   display: grid;
-  grid-template-columns: 1fr; /* Changed to a single column for stacked layout */
+  grid-template-columns: 1fr; /* Mobile: single column */
   gap: 2.5rem; /* Increased gap */
   margin-top: 4rem;
 }
@@ -632,6 +663,72 @@ section {
     var(--bg-color) 100%
   ); /* Reversed gradient */
 }
+
+/* Achievements Section */
+.achievements {
+  background-color: var(--card-bg-color);
+}
+.achievements-wrapper {
+  background-color: var(--card-bg-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+}
+.achievement-group {
+  margin-top: 2rem;
+}
+.achievement-group > h4 {
+  color: var(--text-headings);
+  margin-bottom: 1rem;
+}
+.achievement-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  color: var(--text-primary);
+}
+.achievement-list > li {
+  margin-bottom: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Coding Profiles Section */
+.coding {
+  background-color: var(--bg-color);
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.card {
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+}
+.card > h3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-headings);
+}
+.card > p {
+  color: var(--text-secondary);
+}
+.card > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+.card > a:hover {
+  text-decoration: underline;
+}
 .contact > .container > form {
   max-width: 700px; /* Wider form */
   margin: 3rem auto 0 auto;
@@ -645,38 +742,43 @@ section {
 }
 
 /* Footer */
+/* Modern Footer */
 .footer {
-  background: var(--text-headings);
-  color: #a0aec0; /* Light gray for footer text */
-  padding: 4rem 0 2rem 0;
+  background: var(--primary);
+  color: var(--text-light);
+  padding: 3rem 0 1.5rem 0;
   text-align: center;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  box-shadow: 0 -4px 32px rgba(45, 50, 80, 0.08);
+  position: relative;
 }
+/* Footer Info Grid */
 .footer-info {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
   text-align: left;
 }
 .footer-info > div > h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--primary-light);
-  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.01em;
 }
 .footer-info > div > p,
 .footer-info > div a {
-  color: #a0aec0;
+  color: var(--text-light);
   line-height: 1.7;
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 }
 .footer-info > div a:hover {
-  color: var(--primary-color);
-}
-.social {
-  /* Styles for social icons in footer, if needed */
+  color: var(--accent);
+  text-decoration: underline;
 }
 .social > div {
   display: flex;
@@ -686,19 +788,20 @@ section {
 .social > div > a > svg {
   width: 24px;
   height: 24px;
-  color: #a0aec0;
-  transition: color 0.3s ease, transform 0.3s ease;
+  color: var(--text-tertiary);
+  transition: color 0.3s, transform 0.3s;
 }
 .social > div > a:hover > svg {
-  color: var(--primary-color);
-  transform: scale(1.2);
+  color: var(--accent);
+  transform: scale(1.15);
 }
 
 .copy-right {
   padding-top: 2rem;
   margin-top: 2rem;
-  border-top: 1px solid #2d3748; /* Darker border in footer */
-  font-size: 0.875rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.95rem;
+  color: var(--text-tertiary);
 }
 .copy-right > span {
   color: #718096; /* Even lighter for copyright text */
@@ -720,6 +823,9 @@ section {
 /* Responsive Design Adjustments */
 @media (min-width: 768px) {
   /* Tablet and up */
+  .projects-list {
+    grid-template-columns: repeat(2, 1fr); /* Show 2 cards side-by-side */
+  }
   .about-content {
     /* Two columns: image on one side, text on the other */
     grid-template-columns: 0.8fr 1.2fr; /* Adjust ratio as needed, e.g., 1fr 2fr */

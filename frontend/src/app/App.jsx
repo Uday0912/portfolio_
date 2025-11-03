@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+// Color theme values are now defined in CSS variables in App.module.css
+
 import emailjs from "@emailjs/browser";
 import {
   motion,
@@ -11,26 +13,24 @@ import {
 // Initialize EmailJS with your public key
 emailjs.init("atxTpA5nzu42hQRvc");
 
-// import components
-import DownloadButton from "../common/components/DownloadButton/DownloadButton";
-import IconButton from "../common/components/IconButton/IconButton";
 import InputField from "../common/components/InputField/InputField";
 import TextAreaField from "../common/components/TextAreaField/TextAreaField";
 import SubmitButton from "../common/components/SubmitButton/SubmitButton";
 import Loader from "../common/components/Loader/Loader";
-import cv from "../assets/files/cv.pdf";
 import { BackToTop } from '../components/BackToTop';
+import IconButton from "../common/components/IconButton/IconButton";
 
 // import icons
 import { AiFillGithub, AiFillLinkedin, AiOutlineEye, AiOutlineDownload } from "react-icons/ai";
+import { FiSun, FiMoon } from "react-icons/fi";
 import { FaCode, FaLaptopCode, FaBook } from "react-icons/fa";
+import { SiLeetcode, SiCodechef } from "react-icons/si";
 import { RiSendPlaneFill } from "react-icons/ri";
 // Import other skill icons as needed, e.g.:
 // import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaNodeJs, FaGitAlt, FaJava, FaPython } from "react-icons/fa";
 // import { SiMongodb, SiMysql, SiExpress } from "react-icons/si";
 
 //import images
-import chat from "../assets/images/chat.png";
 import profilePhoto from "../assets/images/profile_photo.jpg";
 import foodfusion from "../assets/images/foodfusion.png";
 import protofolio from "../assets/images/protofolio.png";
@@ -67,64 +67,30 @@ const mlAiSkills = [
   { name: "Machine Learning", cssName: "machine-learning" },
 ];
 
+// Project data
 const projects = [
   {
-    name: "Chat with Docs",
-    // link: "https://ibrahimhiarea.github.io/Soko-Number/",
-    github: "https://github.com/Uday0912/SmartRead",
-    description:
-      "An intelligent Streamlit application allowing users to upload multiple PDF documents and engage in a conversational Q&A session. It leverages advanced Natural Language Processing (NLP) techniques and vector search to provide contextually relevant answers from the uploaded content, enhancing document interaction and information retrieval.",
-    image: chat,
-    tags: ["Python", "Streamlit", "NLP", "AI", "Vector Search", "LangChain"],
-  },
-  {
-    name: "Personal Portfolio",
-    link: "https://youtu.be/d8xUxIteWdw",
-    github: "https://github.com/Parsha_0912/Portfolio",
-    description:
-      "A modern, responsive portfolio website showcasing my development journey and projects. Built with React and Vite, featuring smooth animations, dark mode, and a contact form. The site includes sections for skills, projects, and experience, with a clean and professional design that highlights my work effectively.",
+    name: "CitizenSpark",
+    description: "MGNREGA Data Dashboard for districts: coverage, health, and trends.",
     image: protofolio,
-    tags: ["React", "Vite", "CSS Modules", "JavaScript", "Framer Motion", "EmailJS"],
+    link: "https://your-portfolio.example.com",
+    github: "https://github.com/Uday0912/portfolio",
   },
   {
     name: "FoodFusion",
-    link: "https://youtu.be/OYkS9ta3dQM",
-    github: "https://github.com/Uday0912/FoodFusion",
-    description:
-      "A full-stack food delivery platform built with the MERN stack. Features include user authentication, restaurant listings, menu management, real-time order tracking, and  payment processing. The application provides a seamless experience for both customers and restaurant owners, with features like order history, ratings, and reviews.",
+    description: "A recipe aggregator and recommendation app.",
     image: foodfusion,
-    tags: ["MERN Stack", "MongoDB", "Express", "React", "Node.js", "Redux", "Real-time"],
-  }
+    link: "https://foodfusion.example.com",
+    github: "https://github.com/Uday0912/foodfusion",
+  },
+  {
+    name: "Portfolio Website",
+    description: "Responsive personal portfolio built with React, Vite, and Framer Motion.",
+    image: protofolio,
+    link: "https://your-portfolio.example.com",
+    github: "https://github.com/Uday0912/portfolio",
+  },
 ];
-
-// Animation Variants
-const sectionVariant = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
-
-const itemVariant = {
-  hidden: { opacity: 0, y: 25, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
-  },
-};
-
-const staggerContainerVariant = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
 
 // Helper component for animating sections on scroll
 const AnimatedSection = ({ children, className, id }) => {
@@ -136,9 +102,8 @@ const AnimatedSection = ({ children, className, id }) => {
       id={id}
       ref={ref}
       className={className}
-      variants={sectionVariant}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
     >
       {children}
     </motion.section>
@@ -153,6 +118,25 @@ function App() {
     damping: 35,
     restDelta: 0.001,
   });
+
+  // State initialization
+  const [theme, setTheme] = useState('light');
+  // Load persisted theme and apply to :root
+  useEffect(() => {
+    const stored = localStorage.getItem('theme');
+    const preferred = stored || 'light';
+    setTheme(preferred);
+    document.documentElement.setAttribute('data-theme', preferred);
+  }, []);
+
+  // Apply theme changes when state updates
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'));
+
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -237,10 +221,9 @@ function App() {
         <ul className={style["desktop-nav"]}>
           {" "}
           {/* For desktop nav items */}
-          {["Home", "About", "Projects", "Contact"].map((item) => (
+          {["Home", "About", "Coding", "Achievements", "Projects", "Contact"].map((item) => (
             <motion.li
               key={item}
-              variants={itemVariant}
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -248,6 +231,26 @@ function App() {
             </motion.li>
           ))}
         </ul>
+        {/* Theme toggle */}
+        <button
+          aria-label="Toggle theme"
+          onClick={toggleTheme}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 40,
+            height: 40,
+            marginLeft: 12,
+            borderRadius: 20,
+            border: '1px solid var(--border-color)',
+            background: 'var(--card-bg-color)',
+            color: 'var(--text-primary)',
+            cursor: 'pointer'
+          }}
+        >
+          {theme === 'dark' ? <FiSun /> : <FiMoon />}
+        </button>
         <div className={style["menu-icon"]}>
           <input
             id="checkbox"
@@ -274,10 +277,9 @@ function App() {
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ type: "tween", duration: 0.4, ease: "easeInOut" }}
           >
-            {["Home", "About", "Projects", "Contact"].map((item) => (
+            {["Home", "About", "Coding", "Achievements", "Projects", "Contact"].map((item) => (
               <motion.li
                 key={item}
-                variants={itemVariant} // Reuse item variant for consistency
                 whileHover={{ x: 10, color: "var(--primary-color)" }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -339,28 +341,36 @@ function App() {
       <AnimatedSection id="Home" className={style.home}>
         <motion.div
           className={style["home-content"]}
-          variants={staggerContainerVariant} // Apply stagger to children
-          initial="hidden"
-          animate="visible"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ staggerChildren: 0.15 }}
         >
-          <motion.h1 variants={itemVariant}>
+          <motion.h1
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             Hi, I am <span>Parsha Uday</span>
           </motion.h1>
-          <motion.p variants={itemVariant}>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             A passionate B.Tech Computer Science student specializing in Data
             Structures, Machine Learning, and MERN stack development. Proven
             experience in building impactful full-stack applications and
             innovative Machine Learning models.
           </motion.p>
-          <motion.div
-            variants={itemVariant}
+          <motion.a
+            href="/resume.pdf"
+            download
+            className={style["download-button"]}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <DownloadButton href={cv} download="ParshaUday_CV.pdf" icon={<AiOutlineDownload />}>
-              Download CV
-            </DownloadButton>
-          </motion.div>
+            <AiOutlineDownload /> Download CV
+          </motion.a>
         </motion.div>
         <motion.div
           className={style["scroll-icon"]}
@@ -386,10 +396,10 @@ function App() {
           <div className={style["about-content"]}>
             <motion.div
               className={style["about-image-container"]}
-              variants={itemVariant} // You can create a specific variant if needed
-              initial="hidden"
-              whileInView="visible"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6 }}
             >
               <img
                 src={profilePhoto}
@@ -397,7 +407,12 @@ function App() {
                 className={style["profile-photo"]}
               />
             </motion.div>
-            <motion.div className={style["about-info"]} variants={itemVariant}>
+            <motion.div 
+              className={style["about-info"]}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <h3>Get to know me!</h3>
               <p>
                 As a dedicated B.Tech Computer Science student at Gayatri Vidya
@@ -416,7 +431,9 @@ function App() {
             </motion.div>
             <motion.div
               className={`${style["my-skill"]} ${style["full-width-skill-area"]}`}
-              variants={itemVariant}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
               style={{ gridColumn: "1 / -1" }}
             >
               {" "}
@@ -428,13 +445,16 @@ function App() {
               </h4>
               <motion.div
                 className={style.skills}
-                variants={staggerContainerVariant}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ staggerChildren: 0.1 }}
               >
                 {sdeSkills.map((skill) => (
                   <motion.div
                     key={skill.name}
                     className={`${style.skill} ${style[skill.cssName] || ""}`}
-                    variants={itemVariant}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
                     whileHover={{
                       y: -7,
                       backgroundColor: "var(--primary-light)",
@@ -442,7 +462,7 @@ function App() {
                       boxShadow: "0 6px 12px rgba(0,0,0,0.1)",
                       scale: 1.05,
                     }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    transition={{ duration: 0.5, type: "spring", stiffness: 300, damping: 15 }}
                   >
                     {skill.icon && (
                       <span className={style["skill-icon"]}>{skill.icon}</span>
@@ -460,13 +480,16 @@ function App() {
               </h4>
               <motion.div
                 className={style.skills}
-                variants={staggerContainerVariant}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ staggerChildren: 0.1 }}
               >
                 {mlAiSkills.map((skill) => (
                   <motion.div
                     key={skill.name}
                     className={`${style.skill} ${style[skill.cssName] || ""}`}
-                    variants={itemVariant}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
                     whileHover={{
                       y: -7,
                       backgroundColor: "var(--accent-color)",
@@ -474,7 +497,7 @@ function App() {
                       boxShadow: "0 6px 12px rgba(0,0,0,0.1)",
                       scale: 1.05,
                     }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    transition={{ duration: 0.5, type: "spring", stiffness: 300, damping: 15 }}
                   >
                     {skill.icon && (
                       <span className={style["skill-icon"]}>{skill.icon}</span>
@@ -484,6 +507,63 @@ function App() {
                 ))}
               </motion.div>
             </motion.div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Achievements Section */}
+      <AnimatedSection id="Achievements" className={style.achievements}>
+        <div className={style.container}>
+          <h2 className={style.title}>Honors & Achievements</h2>
+          <div className={style["achievements-wrapper"]}>
+            <div className={style["achievement-group"]}>
+              <h4>Competitive Programming</h4>
+              <ul className={style["achievement-list"]}>
+                <li>Top 5% in Amazon ML Challenge among 80,000+ participants</li>
+                <li>Global Rank 1418 in ICPC Codefest among 10,000+ participants</li>
+                <li>LeetCode: Achieved Knight badge with Rating 1850+ (Top 5.8%)</li>
+                <li>CodeChef: Achieved 3★ with maximum Rating 1600+</li>
+              </ul>
+            </div>
+            <div className={style["achievement-group"]}>
+              <h4>Hackathons</h4>
+              <ul className={style["achievement-list"]}>
+                <li>1st Place, HackTank (IIT Kharagpur): AI proctoring system detecting real-time exam anomalies</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Coding Profiles Section */}
+      <AnimatedSection id="Coding" className={style.coding}>
+        <div className={style.container}>
+          <h2 className={style.title}>Coding Profiles</h2>
+          <div className={style.cards}>
+            <div className={style.card}>
+              <div style={{display:'flex',alignItems:'center',gap:10}}>
+                <SiLeetcode size={22} style={{color:'#f89f1b'}} />
+                <h3>LeetCode</h3>
+              </div>
+              <p>Knight • <strong>1850+</strong> Rating • Top 5.8%</p>
+              <a href="https://leetcode.com/u/UDAY_PARSHA/" target="_blank" rel="noopener noreferrer">Profile →</a>
+            </div>
+            <div className={style.card}>
+              <div style={{display:'flex',alignItems:'center',gap:10}}>
+                <SiCodechef size={22} style={{color:'#5b3d2a'}} />
+                <h3>CodeChef</h3>
+              </div>
+              <p><strong>3★</strong> • <strong>1600+</strong> Max Rating</p>
+              <a href="https://www.codechef.com/users/parshauday" target="_blank" rel="noopener noreferrer">Profile →</a>
+            </div>
+            <div className={style.card}>
+              <div style={{display:'flex',alignItems:'center',gap:10}}>
+                <FaBook size={22} style={{color:'var(--text-secondary)'}} />
+                <h3>TakeUForward</h3>
+              </div>
+              <p>Active Learner • Focus: DSA</p>
+              <a href="https://takeuforward.org/" target="_blank" rel="noopener noreferrer">Profile →</a>
+            </div>
           </div>
         </div>
       </AnimatedSection>
@@ -498,13 +578,17 @@ function App() {
           </p>
           <motion.div
             className={style["projects-list"]}
-            variants={staggerContainerVariant}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ staggerChildren: 0.1 }}
           >
             {projects.map((project, index) => (
               <motion.div
                 key={project.name + index}
                 className={style.project}
-                variants={itemVariant}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div className={style["project-image"]}>
                   <img src={project.image} alt={project.name} />
@@ -560,7 +644,9 @@ function App() {
           <motion.form
             ref={form}
             onSubmit={sendEmail}
-            variants={itemVariant}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             className={loading ? style["form-loading"] : ""}
           >
             <InputField
@@ -572,7 +658,7 @@ function App() {
             <InputField
               type="email"
               name="reply_to"
-              placeholder="Your Email"
+              placeholder="Email"
               required
             />
             <TextAreaField name="message" placeholder="Your Message" required />
@@ -622,7 +708,11 @@ function App() {
       <footer className={style.footer}>
         <div className={style.container}>
           <div className={style["footer-info"]}>
-            <motion.div variants={itemVariant}>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
               <h3>Parsha Uday</h3>
               <p>
                 Ambitious Computer Science student crafting innovative digital
@@ -630,7 +720,12 @@ function App() {
                 Learning.
               </p>
             </motion.div>
-            <motion.div className={style.social} variants={itemVariant}>
+            <motion.div 
+              className={style.social}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <h3>Connect With Me</h3>
               <div>
                 <a
@@ -656,7 +751,12 @@ function App() {
               </p>
             </motion.div>
           </div>
-          <motion.div className={style["copy-right"]} variants={itemVariant}>
+          <motion.div 
+            className={style["copy-right"]}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <span>
               &copy; {new Date().getFullYear()} Parsha Uday. All rights
               reserved.

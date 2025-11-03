@@ -70,18 +70,12 @@ npm run dev
 
 4. Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
-## 📤 Deployment
-
-The frontend is deployed on Vercel for optimal performance and reliability.
-
-🔗 **Live Demo:** [https://parshauday.vercel.app/](https://parshauday.vercel.app/)
-
 ## 📫 Contact
 
 Feel free to reach out if you'd like to collaborate, hire me, or just say hello:
 
 - 📧 **Email:** [parshauday799@gmail.com](mailto:parshauday799@gmail.com)
-- 💼 **LinkedIn:** [https://www.linkedin.com/in/parshauday2200/](https://www.linkedin.com/in/parshauday2200/)
+- 💼 **LinkedIn:** [https://www.linkedin.com/in/parshauday/](https://www.linkedin.com/in/parshauday/)
 
 ## 📄 License
 

@@ -14,8 +14,8 @@
     "@emotion/styled": "^11.14.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.10.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "react-icons": "^5.5.0"
   },
   "devDependencies": {

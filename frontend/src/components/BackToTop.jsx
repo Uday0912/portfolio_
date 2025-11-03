@@ -24,16 +24,17 @@ export const BackToTop = () => {
     });
   };
 
+
   if (!isVisible) return null;
 
   return (
-    <div className="fixed right-4 bottom-4 z-50">
+    <div className="fixed right-6 bottom-6 z-50">
       <button
         onClick={scrollToTop}
-        className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white shadow-lg hover:bg-primary/90 active:scale-95 transition-all duration-300"
+        className="flex items-center justify-center w-12 h-12 rounded-full bg-accent shadow-lg text-white hover:bg-primary hover:shadow-xl active:scale-95 transition-all duration-300 border-2 border-white/80 backdrop-blur-sm"
         aria-label="Back to top"
       >
-        <FaArrowUp className="w-4 h-4" />
+        <FaArrowUp className="w-5 h-5" />
       </button>
     </div>
   );
