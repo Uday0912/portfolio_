@@ -90,7 +90,7 @@ const projects = [
     description: "Responsive personal portfolio built with React, Vite, and Framer Motion.",
     image: protofolio,
     link: "https://youtu.be/d8xUxIteWdw?si=Pvx6aSjiClbSzSuS",
-    github: "https://github.com/Uday0912/portfolio",
+    github: "https://github.com/Uday0912/Portfolio",
   },
   {
     name: "SmartRead",
