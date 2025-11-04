@@ -34,6 +34,8 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import profilePhoto from "../assets/images/profile_photo.jpg";
 import foodfusion from "../assets/images/foodfusion.png";
 import protofolio from "../assets/images/protofolio.png";
+import citizenSpark from "../assets/images/citizenSpark.png";
+import smartread from "../assets/images/chat.png";
 
 // import style
 import style from "./App.module.css";
@@ -72,9 +74,16 @@ const projects = [
   {
     name: "CitizenSpark",
     description: "MGNREGA Data Dashboard for districts: coverage, health, and trends.",
-    image: protofolio,
-    link: "https://your-portfolio.example.com",
-    github: "https://github.com/Uday0912/portfolio",
+    image: citizenSpark,
+    link: "https://citizen-spark-iyt3dojr4-udays-projects-d8504db5.vercel.app/",
+    github: "https://github.com/Uday0912/citizenSpark",
+  },
+  {
+    name: "SmartRead",
+    description: "AI-powered summarization and insights for long articles/documents.",
+    image: smartread,
+    link: "https://smartread.example.com",
+    github: "https://github.com/Uday0912/smartread",
   },
   {
     name: "FoodFusion",
