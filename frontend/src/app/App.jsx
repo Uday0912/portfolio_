@@ -89,7 +89,7 @@ const projects = [
     name: "Portfolio Website",
     description: "Responsive personal portfolio built with React, Vite, and Framer Motion.",
     image: protofolio,
-    link: "https://youtu.be/d8xUxIteWdw?si=Pvx6aSjiClbSzSuS",
+    link: "https://portfolio-ekau.onrender.com/",
     github: "https://github.com/Uday0912/Portfolio",
   },
   {
