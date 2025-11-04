@@ -79,25 +79,25 @@ const projects = [
     github: "https://github.com/Uday0912/citizenSpark",
   },
   {
-    name: "SmartRead",
-    description: "AI-powered summarization and insights for long articles/documents.",
-    image: smartread,
-    link: "https://smartread.example.com",
-    github: "https://github.com/Uday0912/smartread",
-  },
-  {
     name: "FoodFusion",
     description: "A recipe aggregator and recommendation app.",
     image: foodfusion,
-    link: "https://foodfusion.example.com",
+    link: "https://foodfusion-29.onrender.com/",
     github: "https://github.com/Uday0912/foodfusion",
   },
   {
     name: "Portfolio Website",
     description: "Responsive personal portfolio built with React, Vite, and Framer Motion.",
     image: protofolio,
-    link: "https://your-portfolio.example.com",
+    link: "https://youtu.be/d8xUxIteWdw?si=Pvx6aSjiClbSzSuS",
     github: "https://github.com/Uday0912/portfolio",
+  },
+  {
+    name: "SmartRead",
+    description: "AI-powered summarization and insights for long articles/documents.",
+    image: smartread,
+    link: "https://smartread.example.com",
+    github: "https://github.com/Uday0912/smartread",
   },
 ];
 
@@ -528,16 +528,15 @@ function App() {
             <div className={style["achievement-group"]}>
               <h4>Competitive Programming</h4>
               <ul className={style["achievement-list"]}>
-                <li>Top 5% in Amazon ML Challenge among 80,000+ participants</li>
-                <li>Global Rank 1418 in ICPC Codefest among 10,000+ participants</li>
-                <li>LeetCode: Achieved Knight badge with Rating 1850+ (Top 5.8%)</li>
-                <li>CodeChef: Achieved 3★ with maximum Rating 1600+</li>
+                <li>LeetCode: Solved <strong>450+ problems</strong> and ranked in the <strong>Top 10%</strong> globally</li>
+                <li>CodeChef: Achieved <strong>2★</strong> with a maximum rating of <strong>1439+</strong></li>
+                <li>Completed <strong>Citi Software Development Virtual Experience (2025)</strong> focused on scalable backend systems</li>
               </ul>
             </div>
             <div className={style["achievement-group"]}>
               <h4>Hackathons</h4>
               <ul className={style["achievement-list"]}>
-                <li>1st Place, HackTank (IIT Kharagpur): AI proctoring system detecting real-time exam anomalies</li>
+                <li>Participated in <strong>Adobe India Hackathon 2025</strong> — Built AI-driven document structuring solutions</li>
               </ul>
             </div>
           </div>
@@ -554,7 +553,7 @@ function App() {
                 <SiLeetcode size={22} style={{color:'#f89f1b'}} />
                 <h3>LeetCode</h3>
               </div>
-              <p>Knight • <strong>1850+</strong> Rating • Top 5.8%</p>
+              <p>• <strong>1725+</strong> Rating • Top 5.8%</p>
               <a href="https://leetcode.com/u/UDAY_PARSHA/" target="_blank" rel="noopener noreferrer">Profile →</a>
             </div>
             <div className={style.card}>
@@ -562,7 +561,7 @@ function App() {
                 <SiCodechef size={22} style={{color:'#5b3d2a'}} />
                 <h3>CodeChef</h3>
               </div>
-              <p><strong>3★</strong> • <strong>1600+</strong> Max Rating</p>
+              <p><strong>2★</strong> • <strong>1430+</strong> Max Rating</p>
               <a href="https://www.codechef.com/users/parshauday" target="_blank" rel="noopener noreferrer">Profile →</a>
             </div>
             <div className={style.card}>
@@ -571,7 +570,7 @@ function App() {
                 <h3>TakeUForward</h3>
               </div>
               <p>Active Learner • Focus: DSA</p>
-              <a href="https://takeuforward.org/" target="_blank" rel="noopener noreferrer">Profile →</a>
+              <a href="https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2" target="_blank" rel="noopener noreferrer">Profile →</a>
             </div>
           </div>
         </div>
