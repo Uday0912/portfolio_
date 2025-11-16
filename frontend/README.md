@@ -52,8 +52,8 @@ Hi! I'm **Parsha**, a passionate full-stack developer who loves building elegant
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/parsha0912/portfolio_.git
-cd Portfolio
+git clone https://github.com/Uday0912/portfolio_.git
+cd Portfolio_
 ```
 
 2. Install dependencies:
