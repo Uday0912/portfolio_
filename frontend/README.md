@@ -52,7 +52,7 @@ Hi! I'm **Parsha**, a passionate full-stack developer who loves building elegant
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Parsha_0912/Portfolio.git
+git clone https://github.com/parsha0912/portfolio_.git
 cd Portfolio
 ```
 
